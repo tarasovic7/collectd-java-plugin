@@ -48,7 +48,7 @@ public class RandomReader implements CollectdWriteInterface {
         return 0;
     }
 
-    private void toDb(ValueList vl) {
+    private synchronized void toDb(ValueList vl) {
 
         int itemsCount = vl.getDataSet().getDataSources().size();
         for (int i = 0; i < itemsCount; i++) {
@@ -79,7 +79,7 @@ public class RandomReader implements CollectdWriteInterface {
             result.append("\nValues: ");
             try {
                 for (ConvertedDataEntry entry : map.get(key).getDifferencedValues()) {
-                    result.append("-");
+                    result.append(" ");
                     result.append(entry.getValueDifference());
                 }
             } catch (IllegalArgumentException | IllegalStateException ex) {

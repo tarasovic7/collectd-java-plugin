@@ -4,8 +4,6 @@
  */
 package collectdplugin.view;
 
-import java.awt.event.ActionEvent;
-
 /**
  *
  * @author martin
@@ -116,12 +114,7 @@ public class CollectdApp extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
 
-    public void printNewData(String data){
-
-        jTextArea1.setText(data);
-    }
-    
-    public void printCountedData(String data){
+    public synchronized void printCountedData(String data){
         
         jTextArea2.setText(data);
     }

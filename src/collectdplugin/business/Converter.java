@@ -56,18 +56,15 @@ public class Converter {
     }
 
     public List<ConvertedDataEntry> getDifferencedValues() {
-        if (entries.size() <= 2) {
-            throw new IllegalStateException("At least 2 entries are requiered for this");
-        }
-        
+               
         switch (typeOfEntries) {
             case DataSource.TYPE_ABSOLUTE:
                 return ConversionAlgorithms.convertAbsolute(entries);
-
             case DataSource.TYPE_COUNTER:
                 return ConversionAlgorithms.convertCounter(entries);
             case DataSource.TYPE_DERIVE:
-                return ConversionAlgorithms.convertDerived(entries);
+               return ConversionAlgorithms.convertDerived(entries);
+              // return ConversionAlgorithms.convertGauge(entries);
             case DataSource.TYPE_GAUGE:
                 return ConversionAlgorithms.convertGauge(entries);
             default:

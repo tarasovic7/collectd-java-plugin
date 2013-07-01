@@ -13,7 +13,7 @@ import java.util.Objects;
 /**
  * This class is responsible for conversion between data types All methods in
  * this class are converting values from collectd into human readable format All
- * methods in this class returns difference in count or array of differences
+ * methods in this class returns difference in count or list of differences
  *
  * @author martin
  */
@@ -47,8 +47,7 @@ public class ConversionAlgorithms {
         Objects.requireNonNull(oldData, "oldData can't be null");
         Objects.requireNonNull(newData, "newData can't be null");
         long timeDiff = newData.time - oldData.time;
-        //return new ConvertedDataEntry((long) (timeDiff * newData.value), timeDiff); //OK!
-        return new ConvertedDataEntry((long)newData.value, timeDiff);
+        return new ConvertedDataEntry((long) (timeDiff * newData.value), timeDiff); 
     }
 
     /**
