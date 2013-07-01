@@ -1,0 +1,10 @@
+        LoadPlugin "java"
+        <Plugin "java">
+          JVMArg "-verbose:jni"
+            JVMArg "-Djava.class.path=/home/martin/NetBeansProjects/CollectdPlugin/dist"
+
+          LoadPlugin "collectdplugin.CollectdPlugin"
+          <Plugin "collectdplugin.CollectdPlugin">
+            # To be parsed by the plugin
+          </Plugin>
+        </Plugin>
