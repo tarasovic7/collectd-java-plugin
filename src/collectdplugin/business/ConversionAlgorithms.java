@@ -27,7 +27,6 @@ public class ConversionAlgorithms {
     public static List<ConvertedDataEntry> convertGauge(List<Data> data) {
         Objects.requireNonNull(data, "data can't be null");
         requireSize(data, 2);
-        
         List<ConvertedDataEntry> result = new ArrayList<>(data.size());
         for (int i = 1; i < data.size(); i++) {
             long timeSpan = data.get(i).time - data.get(i - 1).time;
@@ -47,7 +46,7 @@ public class ConversionAlgorithms {
         Objects.requireNonNull(oldData, "oldData can't be null");
         Objects.requireNonNull(newData, "newData can't be null");
         long timeDiff = newData.time - oldData.time;
-        return new ConvertedDataEntry((long) (timeDiff * newData.value), timeDiff); 
+        return new ConvertedDataEntry((long) (timeDiff * newData.value), timeDiff);     
     }
 
     /**

@@ -35,7 +35,7 @@ public class RandomReader implements CollectdWriteInterface {
     }
 
     @Override
-    public int write(ValueList vl) {
+    public synchronized int write(ValueList vl) {
         toDb(vl);
         final String forUser = compileDataForGui();
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -60,19 +60,16 @@ public class RandomReader implements CollectdWriteInterface {
 
     private String compileDataForGui() {
         StringBuilder result = new StringBuilder(2000);
-
-        result.append(printMap(db.getAbsolute()));
-        result.append(printMap(db.getCounter()));
-        result.append(printMap(db.getDerived()));
-        result.append(printMap(db.getGauge()));
-
-
+        result.append(printMap(db.getAbsolute(), "absolute"));
+        result.append(printMap(db.getCounter(), "counter"));
+        result.append(printMap(db.getDerived(), "derived"));
+        result.append(printMap(db.getGauge(), "gauge"));
         return result.toString();
     }
 
-    private String printMap(Map<String, Converter> map) {
+    private String printMap(Map<String, Converter> map, String mapName) {
         StringBuilder result = new StringBuilder(500);
-        result.append("-----------------begin--------------\n");
+        result.append("----------------"+ mapName + "-begin--------------\n");
         for (String key : map.keySet()) {
             result.append("Source:");
             result.append(key);
@@ -87,7 +84,7 @@ public class RandomReader implements CollectdWriteInterface {
             }
             result.append("\n");
         }
-        result.append("-----------------end--------------\n");
+        result.append("---------------"+ mapName + "-end--------------\n");
         return result.toString();
     }
 }

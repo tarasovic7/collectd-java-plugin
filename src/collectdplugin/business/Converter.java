@@ -63,10 +63,12 @@ public class Converter {
             case DataSource.TYPE_COUNTER:
                 return ConversionAlgorithms.convertCounter(entries);
             case DataSource.TYPE_DERIVE:
-               return ConversionAlgorithms.convertDerived(entries);
-              // return ConversionAlgorithms.convertGauge(entries);
+               //return ConversionAlgorithms.convertDerived(entries);
+               return ConversionAlgorithms.convertGauge(entries);
             case DataSource.TYPE_GAUGE:
-                return ConversionAlgorithms.convertGauge(entries);
+              //  return ConversionAlgorithms.convertGauge(entries);
+              //  return ConversionAlgorithms.convertGauge(entries);
+                return ConversionAlgorithms.convertDerived(entries);
             default:
                 throw new IllegalStateException("Unknown type of entry");
         }
